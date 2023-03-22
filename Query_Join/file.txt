@@ -13,3 +13,67 @@ WHERE  `degrees`. `name` = "Corso di Laurea in Economia";
 
 SECONDO ESERCIZIO
 
+SELECT `degrees`.`name`
+
+FROM `degrees`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id` 
+
+WHERE `departments`.`name` = "Dipartimento di Neuroscienze";
+
+
+TERZO ESERCIZIO
+
+SELECT `courses`.*
+FROM `course_teacher`
+JOIN`courses`ON `courses`.`id` = `course_teacher`.`course_id`
+WHERE `course_teacher`.`teacher_id` = 44;
+
+
+QUARTO ESERCIZIO
+
+
+SELECT 
+   `students`.`id` AS "studente_id",
+   `students`.`name` AS "nome_studente",
+   `students`.`surname` AS "cognome_studente",
+   
+   `degrees`.`id` AS "id_corso_di_laurea",
+   `degrees`.`name` AS "nome_corso_di_laurea",
+   
+   `departments`.`id` AS "id_dipartimento",
+   `departments`.`name` AS "nome_dipartimento"
+   
+FROM `students`
+JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+ORDER BY `students`.`surname`, `students`.`name`;
+
+
+
+QUINTO ESERCIZIO
+
+SELECT `degrees`.`id`, `degrees`.`name`, 
+`courses`.`id`, `courses`.`name`, 
+`teachers`.`id`, `teachers`.`name`, `teachers`.`surname`
+
+FROM `degrees`
+JOIN `courses` on `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN`teachers`ON `teachers`.`id` = `course_teacher`.`teacher_id`;
+
+
+SESTO ESERCIZIO
+
+SELECT 
+   `teachers`.`id`,
+   `teachers`.`name`,
+   `teachers`.`surname`
+
+FROM `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN `departments` ON `departments`.`id` = `degrees`.`department_id`
+
+WHERE `departments`.`name` = "Dipartimento di Matematica";
+
